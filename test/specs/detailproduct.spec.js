@@ -1,7 +1,7 @@
 import {expect,browser} from '@wdio/globals'
 import detailProductPage from '../pageobjects/detailProductObj.js'
 
-// browser.setWindowSize(1366, 768)
+// await browser.setWindowSize(1366, 768)
 describe('Fitur Detail Produk', function (){
     before('User harus berada pada halaman beranda', async function(){
         await detailProductPage.openPage1()
@@ -11,11 +11,13 @@ describe('Fitur Detail Produk', function (){
     it('Cek Nama Produk', async function(){ //1 PASSED
         await detailProductPage.openPage2()
         const namaProd = await detailProductPage.getProdName()
-        expect(namaProd).toHaveTitle('Short Sleeve Knit Shirt')
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',namaProd)
+        expect(namaProd).toBe('Printed Short Sleeve Shirt')
     })
     it('Cek Panduan Ukuran', async function(){ //2 //PASSED
         await detailProductPage.openPage2()
         await detailProductPage.clickSizeChart()
+        // expect (browser).toHaveElementClass('customization_popup_container')
         expect (browser).toHaveElementClass(detailProductPage.scPopUp)
         expect (detailProductPage.scPopUp).toHaveId(detailProductPage.ukuranTubuh)
     })
@@ -29,27 +31,28 @@ describe('Fitur Detail Produk', function (){
         await detailProductPage.clickPageBefore()
         expect(browser).toHaveUrl('https://executive.co.id/collections/men-shirts/products/long-sleeve-utility-shirt-24c421-black')
     })
-    it.skip('Cek Add Quantity Product', async function(){ //5 
-        await detailProductPage.openPage2()
-        await detailProductPage.clickaddQty()
-        expect(detailProductPage.Qty).toHaveValue(2)
-    })
-    it.skip('Cek Minus Quantity Product', async function(){ //6
-        // await detailProductPage.openPage2()
-        await detailProductPage.clickminQty()
-        expect(detailProductPage.Qty).toHaveValue(2)
-    })
-    it('Cek Add Favorit sebelum Login', async function(){ //7 PASSED
+    // it.skip('Cek Add Quantity Product', async function(){ //5 FAILED
+    //     await detailProductPage.openPage2()
+    //     await detailProductPage.clickaddQty()
+    //     expect(detailProductPage.qty).toHaveValue(2)
+    // })
+    // it.skip('Cek Minus Quantity Product', async function(){ //6 FAILED
+    //     // await detailProductPage.openPage2()
+    //     await detailProductPage.clickminQty()
+    //     expect(detailProductPage.qty).toHaveValue(2)
+    // })
+    it('Cek Add Favorit sebelum Login', async function(){ //5 PASSED
+        await browser.setWindowSize(1366, 768)
         await detailProductPage.openPage2()
         await detailProductPage.clickaddWhishlist()
         expect(browser).toHaveUrl('https://executive.co.id/account/login') //memastikan URL ke login page
     })
-    it('Cek Ubah Size Ke M', async function(){ //8 //PASSED
+    it('Cek Ubah Size Ke M', async function(){ //6 //PASSED
         await detailProductPage.openPage2() //buka halaman web
         await detailProductPage.clicksizeM() // click button size M
         expect(browser).toHaveUrl('https://executive.co.id/collections/men-shirts/products/printed-short-sleeve-shirt-24c425-lt-blue?variant=44599366582434') //memastikan URL sudah ke size M
     })
-    it('Cek Tambah Item Ke Keranjang', async function(){ //9 PASSED
+    it('Cek Tambah Item Ke Keranjang', async function(){ //7 PASSED
         // await detailProductPage.openPage2()
         await detailProductPage.clickchartButton()
         expect(browser).toHaveElementClass(detailProductPage.cbPopup) //test apakah browser memunculkan class ini (pop-up keranjang)

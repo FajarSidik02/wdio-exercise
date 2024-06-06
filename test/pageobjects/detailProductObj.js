@@ -23,8 +23,7 @@ class detailProductPage {
         await this.product.click()
     }
     async getProdName(){
-        await this.prodName.getText()
-        return this.prodName
+        return await this.prodName.getText()
     }
     async clickPageBefore(){
         await this.pageBefore.click()
@@ -56,6 +55,7 @@ class detailProductPage {
     async getProdNameInPopup(){
         await this.cartButtonFinal.getText()
     }
+    
 
 
 

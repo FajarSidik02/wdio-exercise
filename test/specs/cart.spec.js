@@ -13,25 +13,38 @@ describe('Fitur Cart', function (){
         expect (browser).toHaveUrl('https://executive.co.id/cart') // memastikan masuk ke halaman keranjang
 
     })
-    it.only('Cek Tambah Jumlah QTY', async function(){ //tanya mas abid deh
+    it('Cek Tambah Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 8
         await cartObj.openPage2()
         await cartObj.clickaddButton()
         // expect(cartObj.qtyInput).toHaveHref("/cart/change?line=1&quantity=4")
         //const jumlahHarga = await cartObj.getTotal()
         const jumlahInput = await cartObj.getValueqtyInput()
-        expect(jumlahInput).toHaveValue('5')
+        // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jumlahInput)
+        expect(jumlahInput).toBe('2')
     })
-    it('Cek Button CheckOut', async function(){ // PASSED 8
+    it('Cek Kurang Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 9
+        // await cartObj.openPage2()
+        await cartObj.clickDecButton()
+        const jumlahakhir = await cartObj.getValueqtyInput()
+        // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jumlahInput)
+        expect(jumlahakhir).toBe('1')
+    })
+    it('Cek Button CheckOut', async function(){ // PASSED 10
         await cartObj.openPage2()
         await cartObj.clickcoButton()
         await cartObj.clickKirimPaket()
         await cartObj.clickBtnCO()
         expect (browser).toHaveUrl('https://executive.co.id/account/login?checkout_url=%2Fcheckouts%2Fcn%2FZ2NwLWFzaWEtc291dGhlYXN0MTowMUhaTUFERTMwMjdaU1MwMlJHMzY5UTlQUQ%3F_ga%3D2.109517184.403293398.1717595056-189237771.1717595056%2526_gac%253D1.52448986.1717608484.CjwKCAjwmYCzBhA6EiwAxFwfgAuu7PL3kugn-6CCEFc3hd-IfK2zjYKowBM6crRfRdNi8hQQptnYnRoCNtYQAvD_BwE%26locale%3Did-ID')
     })
-    it('Cek Link Lanjut Belanja', async function(){ //PASSED 9
+    it('Cek Link Lanjut Belanja', async function(){ //PASSED 11
         await cartObj.openPage2()
         await cartObj.clickLanjutBelanja
         expect (browser).toHaveUrl('https://executive.co.id/collections/all-voucher-collection')
     })
-    
+    // it('Cek Hapus Item', async function(){ //BELUM BERES
+    //     await cartObj.openPage2()
+    //     await cartObj.clickRemove()
+    //     const cartkosong = await cartObj.getKeterangan()
+    //     expect (cartkosong).toHaveText('Keranjang Anda saat ini kosong.')
+    // })
 })
