@@ -13,9 +13,11 @@ class cartObject{
     get kirimPaket() {return $('#boxcheckreg')}
     get btnCO() {return $('#btncheckout')}
     get lanjutBelanja() {return $('.continue-shopping')}
+    get prodNameCart() {return $('#cartform > div.cart-item-list.content-divider > div.cart-item-list__body > div > div.cart-item__not-image > div.cart-item__column.cart-item__description > div > a')}
     get remove() {return $('.remove')}
     get alertRemove() {return browser.getAlertText()}
     get keteranganKosong() {return $('#shopify-section-template--15155899072674__main > div > div.fully-spaced-row.align-centre.cc-animate-init.-in.cc-animate-complete > p')}
+
 
     //action
     async clickaddButton(){
@@ -29,7 +31,8 @@ class cartObject{
         await this.cartButton.click()
     }
     async getValueqtyInput(){
-        return await this.qtyInput.getValue()
+        let jumlah = await this.qtyInput.getValue()
+        return parseFloat(jumlah)
     }
     async getTotal() {
         await this.total.getHTML()
@@ -54,6 +57,9 @@ class cartObject{
     }
     async getKeterangan(){
         return await this.keteranganKosong.getText()
+    }
+    async getProdNameCart(){
+        return await this.prodNameCart.getText()
     }
 
 

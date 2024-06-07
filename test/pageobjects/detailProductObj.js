@@ -3,6 +3,9 @@ import {$,browser} from '@wdio/globals'
 class detailProductPage {
     //selector
     get product() { return $('#AjaxinateLoop > div > div:nth-child(2) > div > div > div.product-info > div > div > a')}
+    get productbefore() { return $('#AjaxinateLoop > div > div:nth-child(1) > div > div > div.product-info > div > div > a')}
+    get productafter() { return $('#AjaxinateLoop > div > div:nth-child(3) > div > div > div.product-info > div > div > a')}
+
     get prodName() { return $('h3.title')}    
     get pageBefore() {return $('.breadcrumbs-prod-nav__link--prev')}
     get pageAfter() {return $('.breadcrumbs-prod-nav__link--next')}
@@ -40,6 +43,10 @@ class detailProductPage {
     async clickminQty(){
         await this.minQty.click()
     }
+    async getQtyValue(){
+        let qtyvalue = await this.qty.getValue()
+        return parseFloat(qtyvalue)
+    }
     async clickaddWhishlist(){
         await this.wishlist.click()
     }
@@ -53,7 +60,7 @@ class detailProductPage {
         await this.cartButtonFinal.click()
     }
     async getProdNameInPopup(){
-        await this.cartButtonFinal.getText()
+        return await this.prodNameinPopup.getText()
     }
     
 
