@@ -21,14 +21,14 @@ describe('Fitur Detail Produk', function (){
         console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',namaProd)
         expect(namaProd).toBe('Printed Short Sleeve Shirt')
     })
-    it('Cek Panduan Ukuran', async function(){ //2 //PASSED
+    it('Cek Panduan Ukuran', async function(){ //2 MASIH NYARI
         await detailProductPage.openPage2()
-        await detailProductPage.clickSizeChart()
+        await detailProductPage.clickSizeChart()//harus dijalanin biar ke-detect
         await browser.pause(3000)
         // expect (browser).toHaveElementClass('customization_popup_container')
         // expect (browser).toHaveElementClass(detailProductPage.scPopUp)
         // expect (detailProductPage.scPopUp).toHaveId(detailProductPage.ukuranTubuh) // pakai isdplayed
-        const testing = await detailProductPage.ukuranTubuh.isDisplayed()
+        const testing = await detailProductPage.ukuranTubuh.isDisplayedInViewport()
         console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',testing)
         expect (testing).toBe(true)
     })

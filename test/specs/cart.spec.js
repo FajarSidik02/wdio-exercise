@@ -3,7 +3,7 @@ import cartObj from '../pageobjects/cartObj.js'
 import detailProductPage from '../pageobjects/detailProductObj.js'
 
 describe('Fitur Cart', function (){
-    it.only('User harus berada pada halaman cart dan sudah menambahkan item', async function(){
+    before('User harus berada pada halaman cart dan sudah menambahkan item', async function(){
         await browser.setWindowSize(1366, 768)
         await detailProductPage.openPage2()
         await detailProductPage.clickchartButton()
@@ -15,7 +15,7 @@ describe('Fitur Cart', function (){
         expect (prodNameCart).toBe('Printed Short Sleeve Shirt') // tidak bisa pakai tohavetext, kalo textnya beda, tetap jalan
         expect (browser).toHaveUrl('https://executive.co.id/cart') // memastikan masuk ke halaman keranjang
     })
-    it.only('Cek Tambah Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 10
+    it('Cek Tambah Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 10
         await cartObj.openPage2()
         let jmlawal = await cartObj.getValueqtyInput()
         await cartObj.clickaddButton()
@@ -23,7 +23,7 @@ describe('Fitur Cart', function (){
         // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jumlahInput)
         expect(jumlahInput).toEqual(jmlawal+1)
     })
-    it.only('Cek Kurang Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 11
+    it('Cek Kurang Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 11
         // await cartObj.openPage2()
         let jmlawal2 = await cartObj.getValueqtyInput()
         await cartObj.clickDecButton()
@@ -43,10 +43,11 @@ describe('Fitur Cart', function (){
         await cartObj.clickLanjutBelanja
         expect (browser).toHaveUrl('https://executive.co.id/collections/all-voucher-collection')
     })
-//     it('Cek Hapus Item', async function(){ //BELUM BERES
-//         await cartObj.openPage2()
-//         await cartObj.clickRemove()
-//         const cartkosong = await cartObj.getKeterangan()
-//         expect (cartkosong).toHaveText('Keranjang Anda saat ini kosong.')
-//     })
+    it('Cek Hapus Item', async function(){ //BELUM BERES
+        await cartObj.openPage2()
+        await cartObj.clickRemove()
+        await cartObj.clickAlert()
+        let cartkosong = await cartObj.getKeterangan()
+        expect (cartkosong).toBe('Keranjang Anda saat ini kosong.')
+    })
 })
