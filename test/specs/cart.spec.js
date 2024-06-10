@@ -7,7 +7,6 @@ describe('Fitur Cart', function (){
         await browser.setWindowSize(1366, 768)
         await detailProductPage.openPage2()
         await detailProductPage.clickchartButton()
-        // expect(browser).toHaveElementClass(detailProductPage.cbPopup) //test apakah browser memunculkan class ini (pop-up keranjang)
         const prodName = await detailProductPage.getProdNameInPopup() //ambil judul dari pop up yang muncul, memastikan judul produk sesuai
         expect (prodName).toBe('Printed Short Sleeve Shirt') //memastikan judulnya sesuai
         await detailProductPage.clickchartButtonFinal() // klik button pada pop-up
@@ -20,7 +19,6 @@ describe('Fitur Cart', function (){
         let jmlawal = await cartObj.getValueqtyInput()
         await cartObj.clickaddButton()
         let jumlahInput = await cartObj.getValueqtyInput()
-        // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jumlahInput)
         expect(jumlahInput).toEqual(jmlawal+1)
     })
     it('Cek Kurang Jumlah QTY', async function(){ //tanya mas abid deh SOLVED SUBHANALLAH ALLAHUAKBARRR PASSSSSEEEED 11
@@ -28,7 +26,6 @@ describe('Fitur Cart', function (){
         let jmlawal2 = await cartObj.getValueqtyInput()
         await cartObj.clickDecButton()
         let jumlahakhir = await cartObj.getValueqtyInput()
-        // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jumlahInput)
         expect(jumlahakhir).toEqual(jmlawal2-1)
     })
     it('Cek Button CheckOut', async function(){ // PASSED 12

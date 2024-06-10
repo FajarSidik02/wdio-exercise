@@ -2,7 +2,6 @@ import {expect,browser} from '@wdio/globals'
 import detailProductPage from '../pageobjects/detailProductObj.js'
 import cartObj from '../pageobjects/cartObj.js'
 
-// await browser.setWindowSize(1366, 768)
 describe('Fitur Detail Produk', function (){
     let link1
     let link3
@@ -25,9 +24,6 @@ describe('Fitur Detail Produk', function (){
         await detailProductPage.openPage2()
         await detailProductPage.clickSizeChart()//harus dijalanin biar ke-detect
         await browser.pause(3000)
-        // expect (browser).toHaveElementClass('customization_popup_container')
-        // expect (browser).toHaveElementClass(detailProductPage.scPopUp)
-        // expect (detailProductPage.scPopUp).toHaveId(detailProductPage.ukuranTubuh) // pakai isdplayed
         const testing = await detailProductPage.ukuranTubuh.isDisplayedInViewport()
         console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',testing)
         expect (testing).toBe(true)
@@ -52,10 +48,8 @@ describe('Fitur Detail Produk', function (){
     it('Cek Minus Quantity Product', async function(){ //6 SOLVED GG
         // await detailProductPage.openPage2()
         let jmlawal2 = await detailProductPage.getQtyValue()
-        // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jmlawal2)
         await detailProductPage.clickminQty()
         let jml2 = await detailProductPage.getQtyValue()
-        // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',jml2)
         expect(jml2).toEqual(jmlawal2 - 1)
     })
     it('Cek Add Favorit sebelum Login', async function(){ //7 PASSED
