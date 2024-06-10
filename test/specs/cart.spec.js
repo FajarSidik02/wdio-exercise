@@ -43,11 +43,13 @@ describe('Fitur Cart', function (){
         await cartObj.clickLanjutBelanja
         expect (browser).toHaveUrl('https://executive.co.id/collections/all-voucher-collection')
     })
-    it('Cek Hapus Item', async function(){ //BELUM BERES
+    it.only('Cek Hapus Item', async function(){ //PASSED 14
         await cartObj.openPage2()
         await cartObj.clickRemove()
         await cartObj.clickAlert()
+        let del1 = await cartObj.prodNameCart.isDisplayed()
         let cartkosong = await cartObj.getKeterangan()
         expect (cartkosong).toBe('Keranjang Anda saat ini kosong.')
+        expect (del1).toBe(false)
     })
 })
